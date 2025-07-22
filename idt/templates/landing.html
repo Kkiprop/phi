@@ -1,0 +1,325 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FinSurvey - Earn from Surveys</title>
+  <style>
+    :root {
+      --primary: #2e86de;
+      --accent: #00b894;
+      --bg: #f4f9fd;
+      --text: #2d3436;
+      --light: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--light);
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar .logo img {
+      height: 40px;
+      width: 80px;
+      object-fit: cover;
+      border-radius: 0%;
+    }
+
+    .navbar .logo span {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: var(--light);
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    header {
+      background: var(--primary);
+      color: var(--light);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 1rem;
+      background-color: var(--light);
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 300px;
+      padding: 1rem;
+    }
+
+    .hero img {
+      flex: 1;
+      max-width: 400px;
+      margin: 1rem;
+      border-radius: 10px;
+    }
+
+    .hero h2 {
+      color: var(--primary);
+      font-size: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      color: white;
+      background-color: var(--accent);
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .cta-button:hover {
+      background-color: #019770;
+    }
+
+    .section {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .section h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .features, .steps, .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: var(--light);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.5rem;
+    }
+
+    .signup {
+      background-color: var(--primary);
+      color: var(--light);
+      padding: 2rem;
+      border-radius: 10px;
+      margin: 2rem auto;
+      max-width: 800px;
+    }
+
+    footer {
+      background: #2d3436;
+      color: var(--light);
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="{% static 'img/logo.png' %}" href="{% url 'home' %}" alt="Logo">
+      <span>FinSurvey</span>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="nav-links">
+      <a href="#">Home</a>
+      <a href="#how">How It Works</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="{% url 'signup' %}">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header>
+    <h1>FinSurvey</h1>
+    <p>Turn your opinions into earnings!</p>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Get Paid to Share Your Thoughts</h2>
+      <p>Answer surveys, test products, and influence brands — all while earning money from your phone or laptop.</p>
+      <a href="{% url 'signup' %}" class="cta-button">Join & Start Earning</a>
+    </div>
+    <img src="{% static 'img/hero.png' %}" alt="Survey illustration" />
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <h2>Why Choose FinSurvey?</h2>
+    <div class="features">
+      <div class="card">
+        <h3>💳 Secure Payments</h3>
+        <p>Withdraw via M-Pesa, PayPal, or direct bank transfer within 24 hours.</p>
+      </div>
+      <div class="card">
+        <h3>📱 Mobile-Friendly</h3>
+        <p>Our platform is optimized for smartphones — work from anywhere, anytime.</p>
+      </div>
+      <div class="card">
+        <h3>🧠 No Experience Needed</h3>
+        <p>Anyone can start — all you need is 5 minutes and your honest opinion.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="card">
+        <h3>1. Sign Up</h3>
+        <p>Create a free account with your email and location.</p>
+      </div>
+      <div class="card">
+        <h3>2. Take Surveys</h3>
+        <p>Choose from available surveys and submit your answers.</p>
+      </div>
+      <div class="card">
+        <h3>3. Get Paid</h3>
+        <p>Receive cash or rewards for every completed survey.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" id="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonials">
+      <div class="card">
+        <img src="{% static 'img/user1.jpg' %}" alt="User A">
+        <p>“Easy money!”</p>
+        <strong>— Sarah</strong>
+      </div>
+      <div class="card">
+        <img src="{% static 'img/logo.png' %}" alt="User B">
+        <p>“Best side hustle I’ve tried. Surveys are short and payments are fast.”</p>
+        <strong>— Doja Cat</strong>
+      </div>
+      <div class="card">
+        <img src="{% static 'img/user2.png' %}" alt="User C">
+        <p>“Little money, better than nothing anyway”</p>
+        <strong>— Messi</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNUP CALL -->
+  <section class="signup" id="signup">
+    <h2>Start Earning Today</h2>
+    <p>No fees, no contracts. Just simple tasks for real cash rewards.</p>
+    <a href="{% url 'signup' %}" class="cta-button">Sign Up Now</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 FinSurvey. Built for everyday earners in Africa.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('nav-links');
+      navLinks.classList.toggle('show');
+    }
+  </script>
+
+</body>
+</html>

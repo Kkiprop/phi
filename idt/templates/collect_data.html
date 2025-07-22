@@ -1,0 +1,72 @@
+{% load static %}
+<nav style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background-color: #1e88e5; color: white;">
+  <div style="display: flex; align-items: center;">
+    <img src="{% static 'img/logo.png' %}" href="{% url 'home' %}" alt="Logo" style="height: 50px; margin-right: 10px;">
+    <span style="font-size: 24px; font-weight: bold;">FinSurvey</span>
+  </div>
+  <div>
+    <a href="/" style="color: white; text-decoration: none; margin-right: 15px;">Home</a>
+
+  </div>
+</nav>
+
+<div class="form-container">
+  <h2>Join FinSurvey</h2>
+  <p>Fill out the form below to start earning money by completing surveys.</p>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<style>
+  .form-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  .form-container h2 {
+    text-align: center;
+    color: #2e86de;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-container form p {
+    margin-bottom: 1.2rem;
+  }
+
+  .form-container input, .form-container select, .form-container textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+
+  .form-container input:focus {
+    border-color: #2e86de;
+    outline: none;
+  }
+
+  .form-container button {
+    width: 100%;
+    background: #00b894;
+    color: white;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .form-container button:hover {
+    background: #019770;
+  }
+</style>

@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enter OTP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f8fc;
+      padding: 50px;
+    }
+
+    .otp-container {
+      background: white;
+      padding: 30px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      margin-top: 60px;
+    }
+
+    input[type="text"] {
+      font-size: 20px;
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #1e88e5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ✅ Navbar -->
+<nav style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background-color: #1e88e5; color: white;">
+  <div style="display: flex; align-items: center;">
+    <img src="{% static 'img/logo.png' %}" href="{% url 'home' %}" alt="Logo" style="height: 50px; margin-right: 10px;">
+    <span style="font-size: 24px; font-weight: bold;">Survey Rewards</span>
+  </div>
+  <div>
+    <a href="/" style="color: white; text-decoration: none; margin-right: 15px;">Home</a>
+
+  </div>
+</nav>
+
+<!-- ✅ Form Content -->
+<div class="otp-container">
+  <h2>Enter One-Time Password</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Verify</button>
+  </form>
+</div>
+
+</body>
+</html>
